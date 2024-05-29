@@ -17,7 +17,7 @@ class ShaidurovAlgorithm:
         hadamar_product_by_same_symbols = first_transformed * second_transformed
         sum_by_column = np.sum(hadamar_product_by_same_symbols, axis=0)
         conclusion = np.fft.ifft(sum_by_column)
-        return conclusion[:len(first) + len(second) - 1]
+        return np.real_if_close(conclusion[:len(first) + len(second) - 1], tol=1e-10)
 
     @staticmethod
     def _get_closest_power_of_two_from_two_elements(first: int, second: int) -> int:
